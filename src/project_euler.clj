@@ -18,6 +18,19 @@
   "The sum of all the multiples of first-factor or second-factor below limit"
   (add-multiple first-factor second-factor first-factor second-factor 0 limit))
 
+; Again, no finesse. Need to learn more of the language before this gets cleaned up.
+(defn add-even-fibonnaci [first-num second-num sum limit]
+  "Adds even numbers in a fibonacci sequence up to a limit"
+;  (prn (format "%d %d" first-num sum))
+  (let [next-add (+ first-num second-num)]
+    (if (>= next-add limit)
+      sum
+      (recur second-num next-add
+             (if (= (mod next-add 2) 0) (+ sum next-add) sum)
+             limit))))
+
 (defn -main [& options]
   ; Problem 1
-  (prn (sum-multiple-below-limit 3 5 1000)))
+  (prn (sum-multiple-below-limit 3 5 1000))
+  ; Problem 2
+  (prn (add-even-fibonnaci 0 1 0 4000000)))
